@@ -1,0 +1,79 @@
+<project site="shipsc80rev140922" format="Zip Package" targetfilefolder="wwwroot">
+  <Metadata>
+    <metadata>
+      <PackageName>02-ShipTest</PackageName>
+      <Author>Marc Duiker</Author>
+      <Version>1</Version>
+      <Revision />
+      <License />
+      <Comment>Contains:
+Custom Template B
+Custom Item B1 in two languages (en and nl-NL)</Comment>
+      <Attributes />
+      <Readme />
+      <Publisher />
+      <PostStep />
+      <PackageID />
+    </metadata>
+  </Metadata>
+  <SaveProject>True</SaveProject>
+  <Sources>
+    <xitems>
+      <Entries>
+        <x-item>/master/sitecore/content/Home/Custom Item B1/{F9AFD07C-570D-4667-9829-C4A8B15B575E}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/User Defined/ShipTest/Custom Template B/{34660597-B00F-4C77-9A97-8F186C10110B}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/User Defined/ShipTest/Custom Template B/Data/{5B9729B3-80BD-45F6-A0D9-75613BDBCF12}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/User Defined/ShipTest/Custom Template B/__Standard Values/{4BF2A1C5-1885-49C8-A2C2-39244AD7ADCE}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/User Defined/ShipTest/Custom Template B/Data/General link field B/{2943320D-4856-4251-BD9B-32F595A8B9C3}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/User Defined/ShipTest/Custom Template B/Data/Multilist field B/{C7F6198F-2AB2-484C-9C10-836F9BD9BEAF}/invariant/0</x-item>
+      </Entries>
+      <SkipVersions>False</SkipVersions>
+      <Converter>
+        <ItemToEntryConverter>
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </ItemToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>Items</Name>
+    </xitems>
+    <xfiles>
+      <Entries />
+      <Converter>
+        <FileToEntryConverter>
+          <Root />
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </FileToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>Files</Name>
+    </xfiles>
+  </Sources>
+  <Converter>
+    <TrivialConverter>
+      <Transforms />
+    </TrivialConverter>
+  </Converter>
+  <Include />
+  <Exclude />
+  <Name />
+</project>
