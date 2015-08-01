@@ -1,19 +1,20 @@
 ﻿<#
-    This script will upload a Sitecore update package ($updatePackagePath variable) to the Sitecore instances defined in the $siteNameArray variable.
+    This script will upload a Sitecore packages ($packages variable) to the Sitecore instances defined in the $siteNameArray variable.
     
     This script depends on:
     - Several Sitecore instances which must be up and running (see $siteNameArray).
     - The deploy-sitecorepackage.ps1 script which is expected to be located in the same folder.
-    - The 1-customitemsA1-A3.update package which is expected to be located in the ..\resources folder.
+    - The publish-sitecoresite.ps1 script which is expected to be located in the same folder.
+    - 01-ShipTest.update package and 02-ShipTest.zip package which are expected to be located in the ..\resources folder.
  #>
  
-function DeployUpdatePackageToSites
+function DeployPackagesAndPublish
 {
     Param(
     [Parameter(Position=0, Mandatory=$true)]
     [string[]] $SiteNameArray,
     [Parameter(Position=1, Mandatory=$true)]
-    [string] $PackagePath
+    [string[]] $Packages
     )
 
     foreach ($siteName in $SiteNameArray)
@@ -32,15 +33,28 @@ function DeployUpdatePackageToSites
 
         $site = "http://$siteName"
 
-        Write-Host "Calling deploy script for $site..."
-        .\deploy-sitecorepackage.ps1 -SiteUrl $site -UpdatePackagePath "$PackagePath" -ConnectionTimeOutInSeconds 120 -MaxTimeOutInSeconds 600    
+        foreach ($package in $Packages)
+        {
+            if (-not (Test-Path "$package"))
+            {
+                Write-Error "ERROR: $package not found."
+                Exit
+            }
+
+            Write-Host "Calling deploy script for $site..."
+            .\deploy-sitecorepackage.ps1 -SiteUrl $site -UpdatePackagePath "$package" -ConnectionTimeOutInSeconds 120 -MaxTimeOutInSeconds 600
+        }
+
+        Write-Host "Calling publish script for $site..."
+            .\publish-sitecoresite.ps1 -SiteUrl $site -PublishMode smart -Languages 'en, nl-NL' -ConnectionTimeOutInSeconds 120 -MaxTimeOutInSeconds 600
     }
 
     Write-Host "INFO: Done."
 }
 
-# These Siteocre sites should be up and running:
-[string[]] $siteNameArray =@(
+ 
+# These Sitecore sites should be up and running:
+[string[]] $siteNameArray=@(
     'shipsc75rev150212',
     'shipsc80rev140922',
     'shipsc80rev141212',
@@ -49,13 +63,13 @@ function DeployUpdatePackageToSites
     'shipsc80rev150621'
     )
 
-# This is the update package that will be installed in all sites:
-$updatePackagePath = Resolve-Path "$PSScriptRoot\..\resources\1-customitemsA1-A3.update"
+# These are the packages that will be installed in all sites:
+$package1 = Resolve-Path "$PSScriptRoot\..\resources\01-ShipTest.update" | Select -ExpandProperty Path
+$package2 = Resolve-Path "$PSScriptRoot\..\resources\02-ShipTest.zip" | Select -ExpandProperty Path
+$packages = @(
+    $package1,
+    $package2
+    )
 
-if (-not (Test-Path $updatePackagePath))
-{
-    Write-Error "ERROR: $updatePackagePath not found."
-    Exit
-}
+DeployPackagesAndPublish -SiteNameArray $siteNameArray -Packages $packages
 
-DeployUpdatePackageToSites -SiteNameArray $siteNameArray -PackagePath $updatePackagePath
