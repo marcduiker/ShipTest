@@ -76,6 +76,8 @@
   <ItemGroup>
     <Content Include="App_Config\Include\ship.config" />
     <Content Include="packages.config" />
+    <Content Include="App_Config\ConnectionStrings.config" />
+    <Content Include="App_Config\Include\Sitecore.Analytics.config" />
     <None Include="Properties\PublishProfiles\Sc80rev141212.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
