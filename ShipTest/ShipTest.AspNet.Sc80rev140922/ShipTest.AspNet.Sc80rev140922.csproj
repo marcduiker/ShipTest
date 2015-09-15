@@ -41,6 +41,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Sitecore.Ship.AspNet, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Sitecore.Ship.AspNet.0.4.0.150818\lib\net45\Sitecore.Ship.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Ship.Core, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Sitecore.Ship.AspNet.0.4.0.150818\lib\net45\Sitecore.Ship.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Ship.Infrastructure, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Sitecore.Ship.AspNet.0.4.0.150818\lib\net45\Sitecore.Ship.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -64,6 +76,8 @@
     <Content Include="App_Config\Include\Sitecore.Analytics.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="App_Config\Include\ship.config" />
+    <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\Sc80rev140922.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
