@@ -58,18 +58,18 @@ function DeployPackagesAndPublish
  
 # These Sitecore sites should be up and running:
 [string[]] $siteNameArray=@(
-    'shipsc75rev150212',
-    'shipsc80rev140922',
-    'shipsc80rev141212',
-    'shipsc80rev150223',
-    'shipsc80rev150427',
-    'shipsc80rev150621',
-    'shipsc80rev150812'
+    'shipsc75rev150212'#,
+    #'shipsc80rev140922',
+    #'shipsc80rev141212',
+    #'shipsc80rev150223',
+    #'shipsc80rev150427',
+    #'shipsc80rev150621',
+    #'shipsc80rev150812'
     )
 
 # These are the packages that will be installed in all sites:
-$package1 = Resolve-Path "$PSScriptRoot\..\resources\01-ShipTest.update" | Select -ExpandProperty Path
-$package2 = Resolve-Path "$PSScriptRoot\..\resources\02-ShipTest.zip" | Select -ExpandProperty Path
+$package1 = Resolve-Path "$PSScriptRoot\..\resources\1-ShipTest.update" | Select -ExpandProperty Path
+$package2 = Resolve-Path "$PSScriptRoot\..\resources\2-ShipTest.zip" | Select -ExpandProperty Path
 $packages = @(
     $package1,
     $package2

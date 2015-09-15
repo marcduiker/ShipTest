@@ -20,11 +20,13 @@ Param(
 )
 
 $fileUploadUrl = "$SiteUrl/services/package/install/fileupload"
-# fileName must adhere to the ItemNameValidation setting in the web.config because a content item is made for each package in the master database.
-# Therefore only the filename without extension is used since a dot (.) is not allowed.
-$fileName = [System.IO.Path]::GetFileNameWithoutExtension($UpdatePackagePath)
+# The packgeId must be an integer number.
+# In addition packageId must adhere to the ItemNameValidation setting in the web.config because a content item is made for each package in the master database.
+$description = [System.IO.Path]::GetFileName($UpdatePackagePath)
+$fileNameParts = $description.Split("-")
+$packageId = $fileNameParts[0] # Take whatever is in front of the minus (-) in the filename: 1-ShipTest.update => 1
 $curlPath = .\get-curlpath.ps1
-$curlCommand= "$curlPath --show-error --silent --connect-timeout $ConnectionTimeOutInSeconds --max-time $MaxTimeOutInSeconds --form ""filename=@$UpdatePackagePath"" $fileUploadUrl -F ""packageId=$fileName"" -F ""description=description"""
+$curlCommand= "$curlPath --show-error --silent --connect-timeout $ConnectionTimeOutInSeconds --max-time $MaxTimeOutInSeconds --form ""filename=@$UpdatePackagePath"" $fileUploadUrl -F ""packageId=$packageId"" -F ""description=$description"""
 
 Write-Output "INFO: Starting Invoke-Expression: $curlCommand"
 
