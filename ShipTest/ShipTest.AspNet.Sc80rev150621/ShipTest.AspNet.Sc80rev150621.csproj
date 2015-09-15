@@ -41,15 +41,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Sitecore.Ship.AspNet">
-      <HintPath>..\packages\Sitecore.Ship.AspNet.0.4.0.150728\lib\net45\Sitecore.Ship.AspNet.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Ship.Core">
-      <HintPath>..\packages\Sitecore.Ship.AspNet.0.4.0.150728\lib\net45\Sitecore.Ship.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Ship.Infrastructure">
-      <HintPath>..\packages\Sitecore.Ship.AspNet.0.4.0.150728\lib\net45\Sitecore.Ship.Infrastructure.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -74,8 +65,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\ship.config" />
-    <Content Include="packages.config" />
     <Content Include="App_Config\Include\Sitecore.Analytics.config" />
     <Content Include="App_Config\ConnectionStrings.config" />
     <None Include="Properties\PublishProfiles\Sc80rev150621.pubxml" />
