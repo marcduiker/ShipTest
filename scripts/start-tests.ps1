@@ -43,6 +43,9 @@ function DeployPackagesAndPublish
 
             Write-Host "Calling deploy script for $site..."
             .\deploy-sitecorepackage.ps1 -SiteUrl $site -UpdatePackagePath "$package" -ConnectionTimeOutInSeconds 120 -MaxTimeOutInSeconds 600
+
+            Write-Host "Calling get-latestversion script for $site..."
+            .\get-latestversion.ps1 -SiteUrl $site -ConnectionTimeOutInSeconds 120 -MaxTimeOutInSeconds 600
         }
 
         Write-Host "Calling publish script for $site..."
@@ -60,7 +63,8 @@ function DeployPackagesAndPublish
     'shipsc80rev141212',
     'shipsc80rev150223',
     'shipsc80rev150427',
-    'shipsc80rev150621'
+    'shipsc80rev150621',
+    'shipsc80rev150812'
     )
 
 # These are the packages that will be installed in all sites:

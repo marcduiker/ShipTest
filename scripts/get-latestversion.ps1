@@ -1,16 +1,13 @@
 ﻿<#
-    This function publishes Sitecore content, layout and templates for the given $SiteUrl.
-    
-    Valid values for the optional $PublishMode argument are 'full', 'smart' and 'incremental'.
-    If $PublishMode is empty it will default to 'smart'.
-    
-    Valid values for the optional $Languages is a comma delimited string with Sitecore language names. 
-    If $Languages is empty it will default to 'en'.
-    
-    If $TimeOutInSeconds is empty it will default to 900.
+    This function returns the latest package information that has been installed using Ship.
 
+    Prerequisites:
+    - The SitecoreShip.zip content package is installed on the master database.
+    - The recordInstallationHistory attribute in the packageInstallation element 
+    in the web.config was set to true during the package installation.
+    
     Example usage:
-    .\publish-sitecore-site.ps1 -SiteUrl mysite.dev -PublishMode smart -Languages 'en, nl-NL'
+    .\get-latestversion.ps1 -SiteUrl mysite.dev -ConnectionTimeOutInSeconds 60 -MaxTimeOutInSeconds 300
 #>
 
 Param(
@@ -29,7 +26,6 @@ $latestVersionUrl = "$SiteUrl/services/package/latestversion"
 $curlPath = .\get-curlpath.ps1
 $curlCommand= "$curlPath --show-error --silent --connect-timeout $ConnectionTimeOutInSeconds --max-time $MaxTimeOutInSeconds $latestVersionUrl"
 
-#Write-Output "INFO: Starting Invoke-Expression: $curlCommand"
+Write-Output "INFO: Starting Invoke-Expression: $curlCommand"
 
 Invoke-Expression $curlCommand
-#Invoke-WebRequest $latestVersionUrl -UseBasicParsing -TimeoutSec $ConnectionTimeOutInSeconds
